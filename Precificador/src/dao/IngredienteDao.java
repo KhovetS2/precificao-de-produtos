@@ -9,15 +9,14 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import conexoes.Conection;
-import modelo.Receita;
+import modelo.Ingrediente;
 import modelo.UnidadeMedida;
 
-public class ReceitaDao {
-    
+public class IngredienteDao {
     private Connection conexao;
     private PreparedStatement stmt;
     private ResultSet rs;
-    private ArrayList<Receita> lista;
+    private ArrayList<Ingrediente> lista;
 
 
 
@@ -30,13 +29,16 @@ public class ReceitaDao {
 
 
 
-    public void adicionar(Receita receita) {
-        String sql = "INSERT INTO receita (nomeReceita, rendimento, unidadeMedidaRendimento) VALUES (?, ?, ?);";
+    public void add(Ingrediente ingrediente) {
+        String sql = "INSERT INTO ingrediente " +
+        "(ingredienteNome, unidadeMedida, quantidadeEmbalagem, preço) " + 
+        " VALUES (?, ?, ?, ?);";
         try {
             stmt = conexao.prepareStatement(sql);
-            stmt.setString(1, receita.getNomeReceita());
-            stmt.setDouble(2,receita.getRendimento());
-            stmt.setString(3,receita.getUnidadeMedidaRedimento().getUnidade());
+            stmt.setString(1, ingrediente.getIngredienteNome());
+            stmt.setString(2,ingrediente.getUnidadeMedida().getUnidade());
+            stmt.setDouble(3,ingrediente.getQuantidadeEmbalagem());
+            stmt.setDouble(4,ingrediente.getPreco());
             stmt.execute();
             stmt.close();
 
@@ -46,20 +48,14 @@ public class ReceitaDao {
         }finally{
 
             try{
-
-
                 // Verifica se o Statement está fechado se não tiver ele o fecha
                 if(stmt!=null){
                     stmt.close();
                 }
-
-
                 // Verifica se a conexão foi fechada se não tiver sido fecha a conexão
                 if(conexao!=null){
                     conexao.close();
                 }
-
-
             }catch(SQLException e){
                     e.printStackTrace();
             }
@@ -70,46 +66,33 @@ public class ReceitaDao {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public ArrayList<Receita> getReceitas() {
-        String sql = "SELECT * FROM receita";
+    public ArrayList<Ingrediente> getIngredientes() {
+        String sql = "SELECT * FROM ingrediente";
         try {
             this.conexao = new Conection().getConnection();
-
 
             stmt = conexao.prepareStatement(sql);
 
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Receita objReceita = new Receita();
-                objReceita.setId(rs.getInt("id"));
-                objReceita.setNomeReceita(rs.getString("nomeReceita"));
-                objReceita.setRendimento(rs.getDouble("rendimento"));
+                Ingrediente objIngrediente = new Ingrediente();
+                objIngrediente.setId(rs.getInt("id"));
+                objIngrediente.setIngredienteNome(rs.getString("ingredienteNome"));
+                objIngrediente.setQuantidadeEmbalagem(rs.getDouble("quantidadeEmbalagem"));
+                objIngrediente.setPreco(rs.getDouble("preço"));
                 if (rs.getString("unidadeMedidaRendimento").equals("g")) {
                     UnidadeMedida unidadeMedida = UnidadeMedida.GRAMAS;
-                    objReceita.setUnidadeMedidaRedimento(unidadeMedida);
-                    this.lista.add(objReceita);
+                    objIngrediente.setUnidadeMedida(unidadeMedida);
+                    this.lista.add(objIngrediente);
                 } else if  (rs.getString("unidadeMedidaRendimento").equals("unidade")) {
                     UnidadeMedida unidadeMedida = UnidadeMedida.UNIDADE;
-                    objReceita.setUnidadeMedidaRedimento(unidadeMedida);
-                    this.lista.add(objReceita);
+                    objIngrediente.setUnidadeMedida(unidadeMedida);
+                    this.lista.add(objIngrediente);
                 } else {
                     UnidadeMedida unidadeMedida = UnidadeMedida.MILILITROS;
-                    objReceita.setUnidadeMedidaRedimento(unidadeMedida);
-                    this.lista.add(objReceita);
+                    objIngrediente.setUnidadeMedida(unidadeMedida);
+                    this.lista.add(objIngrediente);
                 }
                 
                 
@@ -147,38 +130,18 @@ public class ReceitaDao {
 
 
 
-    
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public void dell(Receita receita) {
+    public void dell(Ingrediente ingrediente) {
 
         
         // Cria uma instâcia temporaria de Aluno_AtividadeDao para deletar todas as tuplas dessa tabela que esse aluno é referenciado
-        new Receita_ingredienteDao().dellReceita(receita);
+        new Receita_ingredienteDao().dellIngrediente(ingrediente);
 
 
         // Cria a string que sera executado no banco de dados
-        String sql= "DELETE FROM receita WHERE id = ?";
+        String sql= "DELETE FROM ingrediente WHERE id = ?";
 
 
         // Conecta com o banco de dados
@@ -191,7 +154,7 @@ public class ReceitaDao {
 
 
             // Informa que aonde está o ponto de interrogação é para substituir pelo idAluno
-            stmt.setInt(1, receita.getId());
+            stmt.setInt(1, ingrediente.getId());
 
 
             // Executa e fecha o Statement
@@ -227,18 +190,20 @@ public class ReceitaDao {
     }
 
 
-    public void update(Receita receita) {
-        String sql = "update receita set" +
-                "`nomeReceita` = ?,\n" +
-                "`rendimento` = ?\n" +
-                "`unidadeMedidaRendimento` = ?\n" +
+    public void update(Ingrediente ingrediente) {
+        String sql = "update ingrediente set" +
+                "`ingredienteNome` = ?,\n" +
+                "`quantidadeEmbalagem` = ?,\n" +
+                "`unidadeMedida` = ?\n" +
+                "`preço` = ?\n" +
         "WHERE `id` = ?;\n";
         try {
             stmt = conexao.prepareStatement(sql);
-            stmt.setString(1, receita.getNomeReceita());
-            stmt.setDouble(2, receita.getRendimento());
-            stmt.setString(3, receita.getUnidadeMedidaRedimento().getUnidade());
-            stmt.setInt(4, receita.getId());
+            stmt.setString(1, ingrediente.getIngredienteNome());
+            stmt.setDouble(2, ingrediente.getQuantidadeEmbalagem());
+            stmt.setString(3, ingrediente.getUnidadeMedida().getUnidade());
+            stmt.setDouble(4, ingrediente.getPreco());
+            stmt.setInt(5, ingrediente.getId());
             stmt.execute();
             stmt.close();
 
@@ -248,6 +213,5 @@ public class ReceitaDao {
             JOptionPane.showMessageDialog(null, "Inválido. Tente novamente.");
         }
     }
-
 
 }
