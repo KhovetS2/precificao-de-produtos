@@ -10,6 +10,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
+import GUI.internalFram.CadastroIngredientes;
+
 /**
  *
  * @author Fatec
@@ -21,9 +23,8 @@ public class Dashboard extends javax.swing.JFrame {
 
     public Dashboard() {
         initComponents();
-        setBackground(new Color(0,0,0,0));
         jDesktopPane1.removeAll();
-         
+        jDesktopPane1.add(new CadastroIngredientes()).setVisible(true);
         menu.initWinButton(Dashboard.this, panelBorda1);
    }
 
@@ -41,10 +42,14 @@ public class Dashboard extends javax.swing.JFrame {
         menu = new GUI.componentes.Menu(jDesktopPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(217, 217, 217));
+        setBackground(new java.awt.Color(255, 255, 204));
         setUndecorated(true);
 
-        jDesktopPane1.setBackground(new java.awt.Color(242, 242, 242));
+        panelBorda1.setBackground(new java.awt.Color(255, 255, 204));
+
+        panelBorda2.setBackground(new java.awt.Color(255, 255, 204));
+
+        jDesktopPane1.setBackground(new java.awt.Color(255, 255, 204));
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -57,6 +62,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 204));
         jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jPanel1MouseDragged(evt);

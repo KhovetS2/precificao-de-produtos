@@ -34,18 +34,7 @@ public class Menu extends javax.swing.JPanel {
     public Menu(JDesktopPane jDesktopPanel) {
         this.jDesktopPanel = jDesktopPanel;
         initComponents();
-        buscarBtn.setColor(new java.awt.Color(2, 30, 54));
-        buscarBtn.setColorOver(new java.awt.Color(2,65,75));
-        buscarBtn.setColorClicked(new java.awt.Color(2,65,90));
-        cadastrarBtn.setColor(new java.awt.Color(2, 30, 54));
-        cadastrarBtn.setColorOver(new java.awt.Color(2,65,75));
-        cadastrarBtn.setColorClicked(new java.awt.Color(2,65,90));
-        editarBtn.setColor(new java.awt.Color(2, 30, 54));
-        editarBtn.setColorOver(new java.awt.Color(2,65,75));
-        editarBtn.setColorClicked(new java.awt.Color(2,65,90));
-        homeBtn.setColor(new java.awt.Color(2, 30, 54));
-        homeBtn.setColorOver(new java.awt.Color(2,65,75));
-        homeBtn.setColorClicked(new java.awt.Color(2,65,90));
+        
     }
 
     
@@ -69,7 +58,7 @@ public class Menu extends javax.swing.JPanel {
         winButton = new GUI.swing.winButton();
         editarBtn1 = new GUI.swing.MyButton();
 
-        setBackground(new java.awt.Color(2, 31, 54));
+        setBackground(new java.awt.Color(48, 38, 29));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 formMouseEntered(evt);
@@ -80,8 +69,10 @@ public class Menu extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Bem-vindo!");
 
-        homeBtn.setForeground(new java.awt.Color(255, 255, 255));
+        homeBtn.setBackground(new java.awt.Color(248, 176, 60));
+        homeBtn.setForeground(new java.awt.Color(48, 38, 29));
         homeBtn.setText("Home");
+        homeBtn.setColor(new java.awt.Color(248, 176, 60));
         homeBtn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         homeBtn.setIconTextGap(15);
         homeBtn.setMargin(new java.awt.Insets(3, -4, 3, 14));
@@ -97,8 +88,10 @@ public class Menu extends javax.swing.JPanel {
             }
         });
 
-        cadastrarBtn.setForeground(new java.awt.Color(255, 255, 255));
+        cadastrarBtn.setBackground(new java.awt.Color(248, 176, 60));
+        cadastrarBtn.setForeground(new java.awt.Color(48, 38, 29));
         cadastrarBtn.setText("Cadastrar");
+        cadastrarBtn.setColor(new java.awt.Color(248, 176, 60));
         cadastrarBtn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         cadastrarBtn.setIconTextGap(15);
         cadastrarBtn.setMargin(new java.awt.Insets(3, 26, 3, 14));
@@ -114,8 +107,10 @@ public class Menu extends javax.swing.JPanel {
             }
         });
 
-        editarBtn.setForeground(new java.awt.Color(255, 255, 255));
+        editarBtn.setBackground(new java.awt.Color(248, 176, 60));
+        editarBtn.setForeground(new java.awt.Color(48, 38, 29));
         editarBtn.setText("Editar");
+        editarBtn.setColor(new java.awt.Color(248, 176, 60));
         editarBtn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         editarBtn.setIconTextGap(15);
         editarBtn.setMargin(new java.awt.Insets(3, 0, 3, 14));
@@ -131,8 +126,10 @@ public class Menu extends javax.swing.JPanel {
             }
         });
 
-        buscarBtn.setForeground(new java.awt.Color(255, 255, 255));
+        buscarBtn.setBackground(new java.awt.Color(248, 176, 60));
+        buscarBtn.setForeground(new java.awt.Color(48, 38, 29));
         buscarBtn.setText("Buscar");
+        buscarBtn.setColor(new java.awt.Color(248, 176, 60));
         buscarBtn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         buscarBtn.setIconTextGap(15);
         buscarBtn.setMargin(new java.awt.Insets(3, 0, 3, 14));
@@ -150,8 +147,10 @@ public class Menu extends javax.swing.JPanel {
 
         winButton.setToolTipText("");
 
-        editarBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        editarBtn1.setBackground(new java.awt.Color(248, 176, 60));
+        editarBtn1.setForeground(new java.awt.Color(48, 38, 29));
         editarBtn1.setText("Editar");
+        editarBtn1.setColor(new java.awt.Color(248, 176, 60));
         editarBtn1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         editarBtn1.setIconTextGap(15);
         editarBtn1.setMargin(new java.awt.Insets(3, 0, 3, 14));

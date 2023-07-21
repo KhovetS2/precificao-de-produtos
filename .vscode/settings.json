@@ -1,6 +1,7 @@
 {
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "Precificador/lib/mysql-connector-j-8.0.32.jar"
+        "Precificador/lib/mysql-connector-j-8.0.32.jar",
+        "Precificador/lib/TimingFramework-0.55.jar"
     ]
 }
